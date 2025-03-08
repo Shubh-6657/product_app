@@ -72,6 +72,7 @@ const Home = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="p-2 border rounded flex-grow"
           />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <select
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="p-2 border rounded"
@@ -88,19 +89,21 @@ const Home = () => {
             <option value="asc">Price: Low to High</option>
             <option value="desc">Price: High to Low</option>
           </select>
+          </div>
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">  
           {filteredProducts.map((product) => (
             <div
               key={product.id}
               onClick={() => openModal(product)} // Open modal on product card click
-              className="border p-4 rounded-lg shadow-lg cursor-pointer"
+              className="border p-4 rounded-lg relative shadow-lg cursor-pointer"
             >
               <img src={product.image} alt={product.title} className="w-full h-48 object-contain" />
               <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
               <p className="text-gray-700">${product.price}</p>
+              {/* <div className="absolute bottom-0"> */}
               <button
                 onClick={(e) => {
                   e.stopPropagation(); // Prevent the product card click event
@@ -114,7 +117,8 @@ const Home = () => {
               >
                 {favorites.includes(product.id) ? 'Unfavorite' : 'Favorite'}
               </button>
-            </div>
+              {/* </div> */}
+             </div>
           ))}
         </div>
 
